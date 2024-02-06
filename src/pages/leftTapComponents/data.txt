@@ -1,0 +1,18 @@
+              <li data-value="00" data-coor-x="990480.875" data-coor-y="1815839.375" className="active">전국</li>
+              <li data-value="11" data-coor-x="953931.981873" data-coor-y="1952053.04791">서울특별시</li>
+              <li data-value="21" data-coor-x="1144829.20649144" data-coor-y="1695143.56988121">부산광역시</li>
+              <li data-value="22" data-coor-x="1101217" data-coor-y="1775774">대구광역시</li>
+              <li data-value="23" data-coor-x="929709.120728" data-coor-y="1939946.40369">인천광역시</li>
+              <li data-value="24" data-coor-x="939472.754284176" data-coor-y="1684701.27486033">광주광역시</li>
+              <li data-value="25" data-coor-x="990493.224320503" data-coor-y="1815828.88131339">대전광역시</li>
+              <li data-value="26" data-coor-x="1157564.47411297" data-coor-y="1730024.73238307">울산광역시</li>
+              <li data-value="29" data-coor-x="978417.2610809" data-coor-y="1840334.58924691">세종특별자치시</li>
+              <li data-value="31" data-coor-x="978020.578815445" data-coor-y="1920879.32751556">경기도</li>
+              <li data-value="32" data-coor-x="1059213.0423" data-coor-y="1987302.3421">강원특별자치도</li>
+              <li data-value="33" data-coor-x="1003504.40306016" data-coor-y="1860032.31537993">충청북도</li>
+              <li data-value="34" data-coor-x="930162.557573035" data-coor-y="1853661.94203876">충청남도</li>
+              <li data-value="35" data-coor-x="964650.794922" data-coor-y="1758282.78149">전라북도</li> 
+              <li data-value="36" data-coor-x="924271.808929061" data-coor-y="1647012.45081521">전라남도</li>
+              <li data-value="37" data-coor-x="1112095" data-coor-y="1830430">경상북도</li>
+              <li data-value="38" data-coor-x="1060307.65015156" data-coor-y="1715022.14131759">경상남도</li>
+              <li data-value="39" data-coor-x="905502.871002523" data-coor-y="1490395.49800157">제주특별자치도</li>
