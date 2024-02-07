@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ReactComponent as Tooltip } from "../assets/images/icon_tooltip.svg";
 
-const Top = () => {
+const Top = ({resetDropdown }) => {
   const areasFirst = ['서울특별시'];
   const areaSecond = [
     '강남구', '강동구', '강북구', '강서구', '관악구', '광진구', '구로구', '금천구', '노원구', '도봉구', '동대문구',
@@ -14,9 +14,18 @@ const Top = () => {
   const [highlightedItem1, setHighlightedItem1] = useState(null);
 
   const [isDropdownOpen2, setIsDropdownOpen2] = useState(false);
-  const [selectedArea2, setSelectedArea2] = useState('전국');
+  const [selectedArea2, setSelectedArea2] = useState('전체');
   const [highlightedItem2, setHighlightedItem2] = useState(null);
   const [dropdownToggle, setDropdownToggle] = useState(false);
+
+  useEffect(() => {
+    if (resetDropdown) {
+      setSelectedArea1('전국');
+      setSelectedArea2('전체');
+      setIsDropdownOpen1(false);
+      setIsDropdownOpen2(false);
+    }
+  }, [resetDropdown]);
 
   const toggleDropdown1 = () => {
     setIsDropdownOpen1(!isDropdownOpen1);
@@ -66,7 +75,7 @@ const Top = () => {
           <Tooltip className="h-full" />
         </span>
       </div>
-      <div className='flex pt-2'>
+      <div className='flex pt-2 items-center'>
         {/* 첫 번째 드롭다운 */}
         <div className="area-select-wrap mt-2 relative z-10">
         <div className="relative mr-3 inline-block text-left w-124">
@@ -145,6 +154,8 @@ const Top = () => {
             )}
           </div>
         </div>
+        <a className="map-pin w-40 h-40 rounded-lg cursor-pointer ml-2" title="현재 위치 선택" style={{ backgroundImage: "url('/images/icon_map_pin.svg')", display: 'inline-block', width: '35px', height: '35px', backgroundRepeat:"no-repeat", backgroundPosition:"center", backgroundColor:"#E3EDFF"}}></a>
+
       </div>
     </div>
   );

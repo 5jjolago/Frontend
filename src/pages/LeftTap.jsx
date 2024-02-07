@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Mid from './Mid';
 import Top from './Top';
-import Bottom from './Bottom';
 
 const LeftTap = () => {
-    return (
-        <div className="p-5">  
-            <Top/>
-            <Mid/>
-            <Bottom/>
-        </div>
-    )
+  const [resetDropdown, setResetDropdown] = useState(false);
+
+  const handleResetDropdown = () => {
+    setResetDropdown(true);
+    setTimeout(() => {
+      setResetDropdown(false);
+    }, 0);
+  };
+
+  return (
+    <div className="p-5">
+      <Top resetDropdown={resetDropdown} />
+      <Mid onResetDropdown={handleResetDropdown} />
+    </div>
+  );
 };
 
 export default LeftTap;

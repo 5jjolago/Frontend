@@ -10,10 +10,21 @@ const Main = () => {
   };
 
   return (
-    <div className="w-screen h-screen relative flex">
-      <div className={`w-96 h-full transition-all duration-500 transform ${isLeftTapOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-        <LeftTap />
-      </div>
+    <div className="w-screen h-screen relative flex ">
+  <div className={`w-96 h-full transition-all duration-500 transform`} style={{
+    position: "absolute",
+    zIndex: isLeftTapOpen ? 1001 : 99,
+    left: isLeftTapOpen ? 0 : -395,
+    width: "394px",
+    height: "auto",
+    backgroundColor: "#fff",
+    borderRadius: "0 0 14px 0",
+    boxShadow: "4px 4px 12px 0px rgba(0, 0, 0, 0.12)"
+}}>
+    <LeftTap />
+</div>
+
+
       {/* <div className="flex-grow">
         <Map
           className="w-full h-full"

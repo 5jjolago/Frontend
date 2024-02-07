@@ -18,7 +18,7 @@ const LifestyleBox = ({ hideText, bottomText, imageurl, onClick }) => {
     <li className="mr-0 w-20 h-20 p-2">
       <label>
         <button
-          className="bg-[rgba(13,21,42,.7)] text-white left-0 w-full h-full cursor-pointer text-xs leading-4 flex items-center justify-center text-center bg-no-repeat bg-center relative rounded"
+          className=" bg-white  text-white left-0 w-full h-full border border-gray-300 rounded-lg p-0 pb-15 cursor-pointer text-xs leading-4 flex items-center justify-center text-center bg-no-repeat bg-center relative rounded"
           style={{ backgroundImage: `url("${imageurl}")` }}
           type="radio"
           name="lifeStyle"
