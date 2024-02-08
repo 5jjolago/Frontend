@@ -1,15 +1,24 @@
 import React from 'react';
-import LifestyleBox from './components/LifestyleBox';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Amplify } from 'aws-amplify';
+import { Authenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+
 import Main from './pages/Main';
-import Mid from './pages/Mid';
-import './styles.js';
-import { GlobalStyle } from './styles.js';
+import BookmarkPage from './pages/bookmark.jsx';
+import SignUpIn from './pages/SignUpIn.jsx';
+
 const App = () => {
   return (
-    <div className='w-screen h-screen'>
-      <GlobalStyle/>
-      <Main></Main>
-    </div>
+    <Router> 
+      <div className='w-screen h-screen'>
+        <Routes> 
+          <Route exact path="/" element={<Main />} /> 
+          <Route path="/bookmark" element={<BookmarkPage />} /> 
+          <Route path="/login" element={<SignUpIn />} /> 
+        </Routes>
+      </div>
+    </Router>
   );
 };
 

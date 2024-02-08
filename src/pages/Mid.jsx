@@ -3,7 +3,7 @@ import LifestyleBox from "../components/LifestyleBox";
 import { ReactComponent as Tooltip } from "../assets/images/icon_tooltip.svg";
 import MetrixIcon from "../components/MetrixIcon";
 import MetrixBox from "../components/MetrixBox";
-const Mid = ({ onResetDropdown }) => {
+const Mid = ({ onResetDropdown, onSelect }) => {
   const [selectedLifestyle, setSelectedLifestyle] = useState(null);
   const [Icons, setIcons] = useState([
     {
@@ -45,6 +45,7 @@ const Mid = ({ onResetDropdown }) => {
   };
   const handleLifestyleClick = (lifestyle) => {
     console.log(lifestyle);
+    onSelect(lifestyle);
     setSelectedLifestyle(lifestyle);
   };
 

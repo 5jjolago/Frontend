@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ReactComponent as Tooltip } from "../assets/images/icon_tooltip.svg";
 
-const Top = ({resetDropdown }) => {
+const Top = ({ resetDropdown, onSelect }) => {
   const areasFirst = ['서울특별시'];
   const areaSecond = [
     '강남구', '강동구', '강북구', '강서구', '관악구', '광진구', '구로구', '금천구', '노원구', '도봉구', '동대문구',
@@ -37,6 +37,9 @@ const Top = ({resetDropdown }) => {
     setSelectedArea1(area);
     setIsDropdownOpen1(false);
     setIsDropdownOpen2(true); // 첫 번째 드롭다운이 선택될 때 두 번째 드롭다운 열기
+
+    // 선택된 지역 값을 부모 컴포넌트로 전달
+    onSelect(area, selectedArea2);
   };
 
   const toggleDropdown2 = () => {
@@ -46,6 +49,9 @@ const Top = ({resetDropdown }) => {
   const handleSelectArea2 = (area) => {
     setSelectedArea2(area);
     setIsDropdownOpen2(false);
+
+    // 선택된 지역 값을 부모 컴포넌트로 전달
+    onSelect(selectedArea1, area);
   };
 
   const handleMouseEnter1 = (index) => {
