@@ -69,7 +69,7 @@ const Main = () => {
         </div>
         <div className="top-area__right">
           <ul className="utill-btn flex flex-row">
-            <li>
+            {/* <li>
               <button
                 type="button"
                 className="btn bookmark flex items-center justify-center"
@@ -182,7 +182,7 @@ const Main = () => {
                   회원가입
                 </span>
               </button>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

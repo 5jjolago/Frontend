@@ -10,6 +10,11 @@
       "StackName": "amplify-ozzoragofront-dev-00311",
       "StackId": "arn:aws:cloudformation:ap-northeast-2:062061726924:stack/amplify-ozzoragofront-dev-00311/2ddb6830-c693-11ee-b122-062878171cfe",
       "AmplifyAppId": "d36hbbos73fqdw"
+    },
+    "categories": {
+      "auth": {
+        "ozzoragofront7065d038": {}
+      }
     }
   }
 }
