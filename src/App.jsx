@@ -57,8 +57,8 @@ const App = () => {
           <div
             style={{
               position: "absolute",
-              top: "25px",
-              left: "500px",
+              top: "20px",
+              left: "400px",
               display: "flex",
             }}
           >

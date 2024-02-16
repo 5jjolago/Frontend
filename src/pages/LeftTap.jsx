@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useRecoilState } from 'recoil';
+import { selectedDropdownValue1State, selectedDropdownValue2State } from '../RecoilState'; // Recoil 상태 import
+
 import Mid from './Mid';
 import Top from './Top';
 
 const LeftTap = ({ SelectedValue }) => {
   const [resetDropdown, setResetDropdown] = useState(false);
-  const [selectedDropdownValue1, setSelectedDropdownValue1] = useState(null);
-  const [selectedDropdownValue2, setSelectedDropdownValue2] = useState(null);
   const [selectedLifestyleValue, setSelectedLifestyleValue] = useState(null);
+  const [selectedDropdownValue1, setSelectedDropdownValue1] = useRecoilState(selectedDropdownValue1State); // Recoil 상태 사용
+  const [selectedDropdownValue2, setSelectedDropdownValue2] = useRecoilState(selectedDropdownValue2State); // Recoil 상태 사용
 
   const handleResetDropdown = () => {
     setResetDropdown(true);
@@ -16,8 +19,8 @@ const LeftTap = ({ SelectedValue }) => {
   };
 
   const selectDropdown = (v1, v2) => {
-    setSelectedDropdownValue1(v1);
-    setSelectedDropdownValue2(v2);
+    setSelectedDropdownValue1(v1); // Recoil 상태 업데이트
+    setSelectedDropdownValue2(v2); // Recoil 상태 업데이트
   };
 
   const selectLifestyle = (v) => {

@@ -10,10 +10,20 @@ function SignInUp(cognitoInfo) {
   return (
     <div>
         {!isLoggedIn ? (
-              <p>
-                Please <Link to="/login">Login</Link> or{" "}
-                <Link to="/signup">Sign Up</Link>
-              </p>
+           <div className="text-center mb-4">
+           <div className="flex justify-center space-x-4">
+             <Link to="/login" className="border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white py-1 px-2 rounded">
+               <div className="flex items-center">
+                 <div>로그인</div>
+               </div>
+             </Link>
+             <Link to="/signup" className="border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white py-1 px-2 rounded">
+               <div className="flex items-center">
+                 <div>회원가입</div>
+               </div>
+             </Link>
+           </div>
+         </div>
             ) : (
               <div>
                 <p>

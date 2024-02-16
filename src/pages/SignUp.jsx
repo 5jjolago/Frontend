@@ -2,19 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCognito } from '../context/CognitoProvider';
 import { COGNITO_API } from '../config';
+import { signUpState, useSignUpStateLogger } from '../RecoilState';
 
 function SignUp() {
-  const { register } = useCognito();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [birthdate, setBirthdate] = useState('');
   const [gender, setGender] = useState('');
   const [location, setLocation] = useState('');
+
+  // Context, recoil
+  const { register } = useCognito();
+  const [signUpInfo, setSignUpInfo] = useRecoilState(signUpState);
+
   const [errorMessage, setErrorMessage] = useState('');
   const navigation = useNavigate(); 
 
-  // 생일을 나이로 변환하는 함수
   function calculateAge(birthdateString) {
     const birthdate = new Date(birthdateString);
     const today = new Date();
@@ -32,6 +36,8 @@ function SignUp() {
     try {
       await register(name, email, password);
       await createBookmark();
+      await  setSignUpInfo({ ...signUpInfo, name:name, neighborhood:"", age: birthdate, gender:gender});
+      useSignUpStateLogger(); // 새로운 훅 사용
       navigation("/login");
     } catch (error) {
       console.error('회원가입 오류:', error);
@@ -51,6 +57,7 @@ function SignUp() {
       age : calculateAge(birthdate),
       gender : gender,
     };
+    console.log(userData)
 
     try {
       const response = await fetch(`http://localhost:8080/bookmarks/`,{

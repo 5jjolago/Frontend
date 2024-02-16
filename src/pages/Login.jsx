@@ -32,7 +32,9 @@ function Login() {
           <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full mb-4 p-2 rounded border border-gray-300" required />
           <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Login</button>
         </form>
-        <p className="mt-3 text-center">Don't have an account? <Link to="/signup" className="text-blue-500 hover:text-blue-600">Sign Up</Link></p>
+        <div class="mt-3 text-center">
+  <p>Don't have an account? <a href="/signup" class="text-blue-500 hover:text-blue-600">Sign Up</a></p>
+</div>
       </div>
     </div>
   );
