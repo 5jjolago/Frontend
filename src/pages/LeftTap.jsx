@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { selectedDropdownValue1State, selectedDropdownValue2State } from '../RecoilState'; // Recoil 상태 import
+import { signUpState, useSignUpStateLogger } from '../recoil/RecoilState'; // Recoil 상태 import
 
 import Mid from './Mid';
 import Top from './Top';
 
-const LeftTap = ({ SelectedValue }) => {
+const LeftTap = () => {
   const [resetDropdown, setResetDropdown] = useState(false);
   const [selectedLifestyleValue, setSelectedLifestyleValue] = useState(null);
-  const [selectedDropdownValue1, setSelectedDropdownValue1] = useRecoilState(selectedDropdownValue1State); // Recoil 상태 사용
-  const [selectedDropdownValue2, setSelectedDropdownValue2] = useRecoilState(selectedDropdownValue2State); // Recoil 상태 사용
+  const [selectedDropdownValue1, setSelectedDropdownValue1] = useState(null); 
+  const [selectedDropdownValue2, setSelectedDropdownValue2] = useRecoilState(signUpState); 
 
+  useSignUpStateLogger()
+  
   const handleResetDropdown = () => {
     setResetDropdown(true);
     setTimeout(() => {
@@ -19,17 +21,13 @@ const LeftTap = ({ SelectedValue }) => {
   };
 
   const selectDropdown = (v1, v2) => {
-    setSelectedDropdownValue1(v1); // Recoil 상태 업데이트
-    setSelectedDropdownValue2(v2); // Recoil 상태 업데이트
+    setSelectedDropdownValue1(v1); 
+    setSelectedDropdownValue2({...selectedDropdownValue2, neighborhood: v2}); // signUpState의 neighborhood 필드를 업데이트
   };
 
   const selectLifestyle = (v) => {
     setSelectedLifestyleValue(v);
   };
-
-  useEffect(() => {
-    SelectedValue(selectedDropdownValue1, selectedDropdownValue2, selectedLifestyleValue);
-  }, [selectedDropdownValue1, selectedDropdownValue2, selectedLifestyleValue, SelectedValue]);
 
   return (
     <div className="p-5">

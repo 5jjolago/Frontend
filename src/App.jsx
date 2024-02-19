@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
 import Main from "./pages/Main";
-import BookmarkPage from "./pages/bookmark.jsx";
+import BookmarkPage from "./components/Mypage.jsx";
 import Login from "./pages/Login.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import { CognitoProvider } from "./context/CognitoProvider.jsx";
 import { COGNITO_API } from "./config";
 import SignInUp from "./components/SignInUp.jsx";
+import { RecoilRoot } from "recoil";
+import BookmarkButton from "./components/BookmarkButton.jsx";
+import Mypage from "./components/Mypage.jsx";
 
 const App = () => {
   const [cognitoInfo, setCognitoInfo] = useState(null);
@@ -46,11 +49,12 @@ const App = () => {
 
   return (
     <Router>
+      <RecoilRoot>
       <CognitoProvider>
         <div className="w-screen h-screen">
           <Routes>
             <Route exact path="/" element={<Main />} />
-            <Route path="/bookmark" element={<BookmarkPage />} />
+            <Route path="/mypage" element={<Mypage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
           </Routes>
@@ -62,10 +66,10 @@ const App = () => {
               display: "flex",
             }}
           >
-          <SignInUp cognitoInfo={cognitoInfo}/>
           </div>
         </div>
       </CognitoProvider>
+      </RecoilRoot>
     </Router>
   );
 };

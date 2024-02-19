@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCognito } from '../context/CognitoProvider';
 import { COGNITO_API } from '../config';
-import { signUpState, useSignUpStateLogger } from '../RecoilState';
+import { signUpState, useSignUpStateLogger } from '../recoil/RecoilState.js';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 function SignUp() {
   const [email, setEmail] = useState('');
@@ -15,66 +16,45 @@ function SignUp() {
   // Context, recoil
   const { register } = useCognito();
   const [signUpInfo, setSignUpInfo] = useRecoilState(signUpState);
+  const recoilSignUpValue = useRecoilValue(signUpState);
 
   const [errorMessage, setErrorMessage] = useState('');
   const navigation = useNavigate(); 
+
+
+  useEffect(() => {
+    console.log("Sign Up State:", recoilSignUpValue);
+  },[signUpInfo])
+
 
   function calculateAge(birthdateString) {
     const birthdate = new Date(birthdateString);
     const today = new Date();
     const ageDiffMs = today - birthdate;
-    const ageDate = new Date(ageDiffMs);
+    const ageDate = new Date(today - ageDiffMs);
     const isPastBirthday = today.getMonth() > birthdate.getMonth() || (today.getMonth() === birthdate.getMonth() && today.getDate() >= birthdate.getDate());
     const age = isPastBirthday ? ageDate.getUTCFullYear() - 1970 : ageDate.getUTCFullYear() - 1971;
 
     return age;
-  }
+}
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(name, email, password)
     try {
-      await register(name, email, password);
-      await createBookmark();
-      await  setSignUpInfo({ ...signUpInfo, name:name, neighborhood:"", age: birthdate, gender:gender});
-      useSignUpStateLogger(); // 새로운 훅 사용
+      const age = calculateAge(birthdate)
+      console.log(age)
+      await register(name, email, age, gender, password);
+      setSignUpInfo({ ...signUpInfo, name:name, neighborhood:"", age: age, gender:gender});
       navigation("/login");
+      console.log(signUpInfo);
     } catch (error) {
       console.error('회원가입 오류:', error);
-      setErrorMessage(error.message);
     }
   };
-
-  // 회원가입 시 즐겨찾기 생성 함수
-  const createBookmark = async () => {
-    const headkey = `CognitoIdentityServiceProvider.${COGNITO_API.clientId}`;
-    const name = localStorage.getItem(`${headkey}.LastAuthUser`);
-    const token = localStorage.getItem(`${headkey}.${name}.accessToken`);
-
-    const userData = {
-      neighborhood : location,
-      user_name : name,
-      age : calculateAge(birthdate),
-      gender : gender,
-    };
-    console.log(userData)
-
-    try {
-      const response = await fetch(`http://localhost:8080/bookmarks/`,{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}` 
-        },
-        body: JSON.stringify(userData) 
-      });
-
-      const json = await response.json();
-      console.log(json.message);
-    } catch(err) {
-      console.log("실패했다"+err)
-    }
-  }
+  useSignUpStateLogger();
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">

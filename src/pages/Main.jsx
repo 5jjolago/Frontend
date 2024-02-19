@@ -1,59 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Mid from "./Mid";
 import { useNavigate } from "react-router-dom";
 import LeftTap from "./LeftTap";
+import SignInUp from "../components/SignInUp";
+import BookmarkButton from "../components/BookmarkButton";
+import { useCognito } from "../context/CognitoProvider";
 
 const Main = () => {
   const [isLeftTapOpen, setIsLeftTapOpen] = useState(true);
-  const [selectedValue1, setSelectedValue1] = useState(null);
-  const [selectedValue2, setSelectedValue2] = useState(null);
-  const [selectedValue3, setSelectedValue3] = useState(null);
-  const navigation = useNavigate(); 
+  const navigation = useNavigate();
+  const { getSession } = useCognito();
   const handleButtonClick = () => {
-
     setIsLeftTapOpen(!isLeftTapOpen);
   };
-
-  const sendPostRequest = async (value1, value2, value3) => {
-     try {
-    const response = await fetch('https://your-backend-api-url', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ value1, value2, value3 }),
-    });
-    
-    if (response.ok) {
-      console.log('Data sent successfully.');
-    } else {
-      console.error('Failed to send data to the server.');
-    }
-  } catch (error) {
-    console.error('An error occurred while sending data:', error);
-  }
-    console.log("Sending POST request with values:", value1, value2, value3);
-  };
-  const handleLogin = () => {
-    navigation("/login")
-  }
-  const handleSignUp = () => {
-    navigation("/signup")
-  }
-  const handleBookMark = () => {
-    alert("즐겨찾기 성공")
-    if (selectedValue1 !== null && selectedValue2 !== null && selectedValue3 !== null) {
-      sendPostRequest(selectedValue1, selectedValue2, selectedValue3);
-    }
-     
-  }
-  const handleSelectValue = (value1, value2, value3) => {
- 
-    setSelectedValue1(value1);
-    setSelectedValue2(value2);
-    setSelectedValue3(value3);
-  };
-
+  getSession((result) => {
+    console.log("결과값:"+result); // true or false
+  });
   return (
     <div className="w-screen h-screen  ">
       <div className="top-area w-full flex items-center">
@@ -67,122 +29,9 @@ const Main = () => {
           </h1>
           <p className="text-2xl font-bold ml-4">거주지 추천 서비스</p>
         </div>
-        <div className="top-area__right">
+        <div className="top-area__right ml-48">
           <ul className="utill-btn flex flex-row">
-            {/* <li>
-              <button
-                type="button"
-                className="btn bookmark flex items-center justify-center"
-                onClick={handleBookMark}
-                style={{
-                  position: "relative",
-                  padding: "0 11px 0 31px",
-                }}
-              >
-                <span
-                  style={{
-                    content: "''",
-                    position: "absolute",
-                    top: "50%",
-                    left: "10px",
-                    transform: "translateY(-50%)",
-                    WebkitTransform: "translateY(-50%)",
-                    width: "40px",
-                    height: "40px",
-                    backgroundImage: `url("/images/icon_utill_bookmark.svg")`,
-                    backgroundPosition: "center", 
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "cover",
-                    display: "inline-block",
-                    marginRight: "5px",
-                    fontSize: "10px",
-                  }}
-                ></span>
-
-                <span
-                  className="text-ml font-bold ml-1"
-                  style={{ color: "#606060" }}
-                >
-                  즐겨찾기
-                </span>
-              </button>
-            </li>
-            <li>
-              <button
-                type="button"
-                className="btn bookmark flex items-center justify-center"
-                onClick={handleLogin}
-                style={{
-                  position: "relative",
-                  padding: "0 11px 0 31px",
-                }}
-              >
-                <span
-                  style={{
-                    content: "''",
-                    position: "absolute",
-                    top: "50%",
-                    left: "10px",
-                    transform: "translateY(-50%)",
-                    WebkitTransform: "translateY(-50%)",
-                    width: "25px", 
-                    height: "25px", 
-                    backgroundImage: `url("/images/loginicons.jpg")`,
-                    backgroundPosition: "center", 
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "cover", 
-                    display: "inline-block",
-                    marginRight: "5px",
-                    fontSize: "10px",
-                  }}
-                ></span>
-
-                <span
-                  className="text-ml font-bold ml-3"
-                  style={{ color: "#606060" }}
-                >
-                  로그인
-                </span>
-              </button>
-            </li>
-            <li>
-              <button
-                type="button"
-                className="btn bookmark flex items-center justify-center"
-                onClick={handleSignUp}
-                style={{
-                  position: "relative",
-                  padding: "0 11px 0 31px",
-                }}
-              >
-                <span
-                  style={{
-                    content: "''",
-                    position: "absolute",
-                    top: "50%",
-                    left: "10px",
-                    transform: "translateY(-50%)",
-                    WebkitTransform: "translateY(-50%)",
-                    width: "25px", 
-                    height: "25px", 
-                    backgroundImage: `url("/images/loginicons.jpg")`,
-                    backgroundPosition: "center", 
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "cover", 
-                    display: "inline-block",
-                    marginRight: "5px",
-                    fontSize: "10px",
-                  }}
-                ></span>
-
-                <span
-                  className="text-ml font-bold ml-3"
-                  style={{ color: "#606060" }}
-                >
-                  회원가입
-                </span>
-              </button>
-            </li> */}
+            <SignInUp />
           </ul>
         </div>
       </div>
@@ -205,16 +54,8 @@ const Main = () => {
           boxShadow: "4px 4px 12px 0px rgba(0, 0, 0, 0.12)",
         }}
       >
-        <LeftTap SelectedValue={handleSelectValue} />
+        <LeftTap/>
       </div>
-
-      {/* <div className="flex-grow">
-        <Map
-          className="w-full h-full"
-          center={{ lat: 33.5563, lng: 126.79581 }}
-          level={12}
-        ></Map>
-      </div> */}
       <button
         onClick={handleButtonClick}
         className="absolute top-0 right-0 m-4 p-2 bg-blue-500 text-white z-10"
