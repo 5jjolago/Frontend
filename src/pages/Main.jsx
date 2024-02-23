@@ -13,6 +13,7 @@ const Main = () => {
   const handleButtonClick = () => {
     setIsLeftTapOpen(!isLeftTapOpen);
   };
+
   getSession((result) => {
     console.log("결과값:"+result); // true or false
   });
