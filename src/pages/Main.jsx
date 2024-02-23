@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import Mid from "./Mid";
+import { useNavigate } from "react-router-dom";
+import LeftTap from "./LeftTap";
+import SignInUp from "../components/SignInUp";
+import BookmarkButton from "../components/BookmarkButton";
+import { useCognito } from "../context/CognitoProvider";
 
-import Main from "./pages/Main";
-import BookmarkPage from "./components/Mypage.jsx";
-import Login from "./pages/Login.jsx";
-import SignUp from "./pages/SignUp.jsx";
-import { CognitoProvider } from "./context/CognitoProvider.jsx";
-import { COGNITO_API } from "./config";
-import SignInUp from "./components/SignInUp.jsx";
-import { RecoilRoot } from "recoil";
-import BookmarkButton from "./components/BookmarkButton.jsx";
-import Mypage from "./components/Mypage.jsx";
+const Main = () => {
+  const [isLeftTapOpen, setIsLeftTapOpen] = useState(true);
+  const navigation = useNavigate();
+  const { getSession } = useCognito();
+  const handleButtonClick = () => {
+    setIsLeftTapOpen(!isLeftTapOpen);
+  };
+  getSession((result) => {
+    console.log("결과값:"+result); // true or false
+  });
 
-const App = () => {
-  const [cognitoInfo, setCognitoInfo] = useState(null);
 
   useEffect(() => {
     // Fetch 예제 - Redis에 데이터 저장하기
-    fetch('https://fastapi-svc.default.svc.cluster.local/set/keyName', {
+    fetch('http://fastapi-svc:8080/set/keyName', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -29,60 +32,61 @@ const App = () => {
     .catch(error => console.error('Error:', error));
 
     // Fetch 예제 - Redis에서 데이터 가져오기
-    fetch('https://myredis-svc.default.svc.cluster.local/get/keyName')
+    fetch('http://fastapi-svc:8080/get/keyName')
     .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.error('Error:', error));
   }, []);
   
-  useEffect(() => {
-    const getCognitoInfo = async () => {
-      const headkey = `CognitoIdentityServiceProvider.${COGNITO_API.clientId}`;
-      const name = localStorage.getItem(`${headkey}.LastAuthUser`);
-      const accessToken = localStorage.getItem(`${headkey}.${name}.accessToken`);
-      console.log(name, accessToken);
-      const data = {
-        name: name,
-        accessToken: accessToken
-      };
-      return data;
-    };
-
-    const updateCognitoInfo = async () => {
-      const cognitoData = await getCognitoInfo();
-      setCognitoInfo(cognitoData);
-    };
-
-    const checkLocalStorage = async () => {
-      if (!localStorage.getItem(`CognitoIdentityServiceProvider.${COGNITO_API.clientId}.LastAuthUser`)) {
-        console.log("로컬 스토리지에 값이 없습니다.");
-        setCognitoInfo(null);
-      } else {
-        console.log("로컬 스토리지에 값이 있습니다.");
-        await updateCognitoInfo();
-      }
-    };
-
-    checkLocalStorage();
-  }, [localStorage.getItem(`CognitoIdentityServiceProvider.${COGNITO_API.clientId}.LastAuthUser`)]);
 
   return (
-    <Router>
-      <RecoilRoot>
-        <CognitoProvider>
-          <div className="w-screen h-screen">
-            <Routes>
-              <Route exact path="/" element={<Main />} />
-              <Route path="/mypage" element={<Mypage />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<SignUp />} />
-            </Routes>
-            <div style={{ position: "absolute", top: "20px", left: "400px", display: "flex" }}></div>
-          </div>
-        </CognitoProvider>
-      </RecoilRoot>
-    </Router>
+    <div className="w-screen h-screen  ">
+      <div className="top-area w-full flex items-center">
+        <div className="top-area__left flex items-center">
+          <h1>
+            <img
+              src="/images/ozzorago_main.PNG"
+              alt="Ozzorago Main Image"
+              style={{ height: "80px" }}
+            />
+          </h1>
+          <p className="text-2xl font-bold ml-4">거주지 추천 서비스</p>
+        </div>
+        <div className="top-area__right ml-48">
+          <ul className="utill-btn flex flex-row">
+            <SignInUp />
+          </ul>
+        </div>
+      </div>
+      {/* <iframe
+        src="https://13.124.183.186:5601/app/dashboards?auth_provider_hint=anonymous1#/view/edf84fe0-e1a0-11e7-b6d5-4dc382ef7f5b?embed=true&_g=()&hide-filter-bar=true"
+        height="600"
+        width="800"
+      ></iframe> */}
+      <div
+        className={`w-96 h-full transition-all duration-500 transform`}
+        style={{
+          position: "absolute",
+          top: "75px",
+          zIndex: isLeftTapOpen ? 1001 : 99,
+          left: isLeftTapOpen ? 0 : -395,
+          width: "394px",
+          height: "auto",
+          backgroundColor: "#fff",
+          borderRadius: "0 0 14px 0",
+          boxShadow: "4px 4px 12px 0px rgba(0, 0, 0, 0.12)",
+        }}
+      >
+        <LeftTap/>
+      </div>
+      <button
+        onClick={handleButtonClick}
+        className="absolute top-0 right-0 m-4 p-2 bg-blue-500 text-white z-10"
+      >
+        {isLeftTapOpen ? "Hide" : "Show"}
+      </button>
+    </div>
   );
 };
 
-export default App;
+export default Main;

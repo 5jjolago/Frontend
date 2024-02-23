@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { signUpState } from "../recoil/RecoilState";
-import { COGNITO_API } from "../config";
+import { COGNITO_API } from "../config.js";
 import { useCognito } from "../context/CognitoProvider";
 import { Link, useNavigate } from "react-router-dom";
 
