@@ -29,7 +29,7 @@ const Main = () => {
               style={{ height: "80px" }}
             />
           </h1>
-          <p className="text-2xl font-bold ml-4">거주지 추천 서비스</p>
+          <p className="text-2xl font-bold ml-4">거주지 추천 서비스 김윤경</p>
         </div>
         <div className="top-area__right ml-48">
           <ul className="utill-btn flex flex-row">
@@ -38,11 +38,7 @@ const Main = () => {
         </div>
       </div>
       <Dashboard />
-      {/* <iframe
-        src="https://13.124.183.186:5601/app/dashboards?auth_provider_hint=anonymous1#/view/edf84fe0-e1a0-11e7-b6d5-4dc382ef7f5b?embed=true&_g=()&hide-filter-bar=true"
-        height="600"
-        width="800"
-      ></iframe> */}
+
       <div
         className={`w-96 h-full transition-all duration-500 transform`}
         style={{
