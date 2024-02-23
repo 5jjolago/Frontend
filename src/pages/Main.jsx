@@ -5,6 +5,7 @@ import LeftTap from "./LeftTap";
 import SignInUp from "../components/SignInUp";
 import BookmarkButton from "../components/BookmarkButton";
 import { useCognito } from "../context/CognitoProvider";
+import Dashboard from "./Dashboard";
 
 const Main = () => {
   const [isLeftTapOpen, setIsLeftTapOpen] = useState(true);
@@ -15,8 +16,9 @@ const Main = () => {
   };
 
   getSession((result) => {
-    console.log("결과값:"+result); // true or false
+    console.log("결과값:" + result); // true or false
   });
+
   return (
     <div className="w-screen h-screen  ">
       <div className="top-area w-full flex items-center">
@@ -36,11 +38,8 @@ const Main = () => {
           </ul>
         </div>
       </div>
-      {/* <iframe
-        src="https://13.124.183.186:5601/app/dashboards?auth_provider_hint=anonymous1#/view/edf84fe0-e1a0-11e7-b6d5-4dc382ef7f5b?embed=true&_g=()&hide-filter-bar=true"
-        height="600"
-        width="800"
-      ></iframe> */}
+      <Dashboard />
+
       <div
         className={`w-96 h-full transition-all duration-500 transform`}
         style={{
@@ -55,7 +54,7 @@ const Main = () => {
           boxShadow: "4px 4px 12px 0px rgba(0, 0, 0, 0.12)",
         }}
       >
-        <LeftTap/>
+        <LeftTap />
       </div>
       <button
         onClick={handleButtonClick}
