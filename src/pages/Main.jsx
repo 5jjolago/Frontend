@@ -16,29 +16,6 @@ const Main = () => {
   getSession((result) => {
     console.log("결과값:"+result); // true or false
   });
-
-
-  useEffect(() => {
-    // Fetch 예제 - Redis에 데이터 저장하기
-    fetch('http://fastapi-svc:8080/set/keyName', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ value: 'someValue' }),
-    })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
-
-    // Fetch 예제 - Redis에서 데이터 가져오기
-    fetch('http://fastapi-svc:8080/get/keyName')
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.error('Error:', error));
-  }, []);
-  
-
   return (
     <div className="w-screen h-screen  ">
       <div className="top-area w-full flex items-center">
