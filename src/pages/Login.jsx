@@ -3,38 +3,48 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useCognito } from '../context/CognitoProvider';
 
 function Login() {
-  const { login , signIn} = useCognito();
-  const [email, setEmail] = useState('');
+  const { login } = useCognito();
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const navigation = useNavigate();
+  const navigate = useNavigate();
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        await login(email, password);
-        console.log('로그인 성공');
-        navigation("/");
-        // 로그인 성공 후 리다이렉트 등의 작업을 수행할 수 있습니다.
-      } catch (error) {
-        console.error('로그인 오류:', error);
-        // 로그인 오류 처리를 수행합니다.
+      await login(name, password);
+      console.log('로그인 성공');
+      navigate("/");
+    } catch (error) {
+      console.error('로그인 오류:', error);
+      if (error.code === "UserNotConfirmedException") {
+        setErrorMessage("회원가입 시 기입한 이메일로 보낸 메일을 확인하여 계정을 인증해주세요.");
+      } else {
+        setErrorMessage("이름과 비밀번호를 올바르게 입력해주세요.");
       }
-    console.log('Login with:', email, password);
+    }
   };
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
-      <div className="max-w-md w-full bg-white p-8 rounded shadow-md">
-        <h2 className="text-2xl font-bold mb-4">Login</h2>
+      <div className="max-w-md w-full bg-white p-8 rounded-lg shadow">
+        <h2 className="text-2xl font-bold mb-4">로그인</h2>
         <form onSubmit={handleSubmit}>
-          <input type="text" placeholder="name" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full mb-4 p-2 rounded border border-gray-300" required />
-          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full mb-4 p-2 rounded border border-gray-300" required />
-          <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Login</button>
+          <div className="mb-4">
+            <label htmlFor="name" className="block text-sm font-medium text-gray-700">이름</label>
+            <input type="text" id="name" placeholder="이름" value={name} onChange={(e) => setName(e.target.value)} className="mt-1 w-full p-2 rounded border border-gray-300" required />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">비밀번호</label>
+            <input type="password" id="password" placeholder="비밀번호" value={password} onChange={(e) => setPassword(e.target.value)} className="mt-1 w-full p-2 rounded border border-gray-300" required />
+          </div>
+          <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline">로그인</button>
+          {errorMessage && <p className="text-red-500 text-sm mt-4">{errorMessage}</p>}
         </form>
-        <div class="mt-3 text-center">
-  <p>Don't have an account? <a href="/signup" class="text-blue-500 hover:text-blue-600">Sign Up</a></p>
-</div>
+        <p className="mt-4 text-center text-sm">
+          계정이 없으신가요? <Link to="/signup" className="text-blue-500 hover:text-blue-700">회원가입</Link>
+        </p>
       </div>
     </div>
   );

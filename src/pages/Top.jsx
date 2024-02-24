@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ReactComponent as Tooltip } from "../assets/images/icon_tooltip.svg";
+import BookmarkButton from '../components/BookmarkButton';
 
 const Top = ({ resetDropdown, onSelect }) => {
   const areasFirst = ['서울특별시'];
@@ -81,9 +82,9 @@ const Top = ({ resetDropdown, onSelect }) => {
           <Tooltip className="h-full" />
         </span>
       </div>
-      <div className='flex pt-2 items-center'>
+      <div className='flex pt-2 mt-2 items-center'>
         {/* 첫 번째 드롭다운 */}
-        <div className="area-select-wrap mt-2 relative z-10">
+        <div className="area-select-wrap relative z-10">
         <div className="relative mr-3 inline-block text-left w-124">
             <span
               className="text-xs cursor-pointer border border-gray-300 rounded px-4 py-2 inline-flex items-center"
@@ -122,7 +123,7 @@ const Top = ({ resetDropdown, onSelect }) => {
           </div>
         </div>
         {/* 두 번째 드롭다운 */}
-        <div className="area-select-wrap mt-2 relative z-10">
+        <div className="area-select-wrap relative z-10">
           <div className="relative inline-block text-left">
             <span
               className={`text-xs cursor-pointer border border-gray-300 rounded px-4 py-2 inline-flex items-center ${isDropdownOpen1 ? 'active' : ''}`}
@@ -160,8 +161,10 @@ const Top = ({ resetDropdown, onSelect }) => {
             )}
           </div>
         </div>
-        <a className="map-pin w-40 h-40 rounded-lg cursor-pointer ml-2" title="현재 위치 선택" style={{ backgroundImage: "url('/images/icon_map_pin.svg')", display: 'inline-block', width: '35px', height: '35px', backgroundRepeat:"no-repeat", backgroundPosition:"center", backgroundColor:"#E3EDFF"}}></a>
-
+        {/* <a className="map-pin w-40 h-40 rounded-lg cursor-pointer ml-2" title="현재 위치 선택" style={{ backgroundImage: "url('/images/icon_map_pin.svg')", display: 'inline-block', width: '35px', height: '35px', backgroundRepeat:"no-repeat", backgroundPosition:"center", backgroundColor:"#E3EDFF"}}></a> */}
+        <div className="ml-4">
+        <BookmarkButton/>
+        </div>
       </div>
     </div>
   );

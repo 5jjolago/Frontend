@@ -11,9 +11,6 @@ const LifestyleBox = ({ hideText, bottomText, imageurl, onClick }) => {
     setIsHovered(false);
   };
 
-  const handleLifeStyleClick = () => {
-    
-  }
   return (
     <li className="mr-0 w-20 h-20 p-2">
       <label>

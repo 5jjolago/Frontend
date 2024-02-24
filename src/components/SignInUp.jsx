@@ -42,7 +42,6 @@ function SignInUp() {
                     </div>
         </div>
                     <LogoutButton />
-                    <BookmarkButton />
                 </div>
             )}
         </div>

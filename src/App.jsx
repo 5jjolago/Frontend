@@ -21,7 +21,6 @@ const App = () => {
       const headkey = `CognitoIdentityServiceProvider.${COGNITO_API.clientId}`;
       const name = localStorage.getItem(`${headkey}.LastAuthUser`);
       const accessToken = localStorage.getItem(`${headkey}.${name}.accessToken`);
-      console.log(name, accessToken);
       const data = {
         name: name,
         accessToken: accessToken

@@ -30,5 +30,5 @@ export const resetSignUpState = () => {
 
 export function useSignUpStateLogger() {
     const signUpInfo = useRecoilValue(signUpState);
-    console.log("Sign Up State:", signUpInfo);
+    // console.log("Sign Up State:", signUpInfo);
 }
