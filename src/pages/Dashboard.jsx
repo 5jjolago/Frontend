@@ -19,7 +19,7 @@ function Dashboard() {
   const formattedQuery = `query:(language:kuery,query:'${query}')`;
 
   const source =
-    "https://13.125.155.23:5601/app/dashboards?auth_provider_hint=anonymous1#/view/9f916a24-8c3e-4d39-a8d7-dc54bc0a3373?embed=true&_g=(refreshInterval:(pause:!f,value:900000),time:(from:now-7d%2Fd,to:now))&_a=(" +
+    "https://13.125.155.23:5601/app/dashboards?embed=true&auth_provider_hint=anonymous1#/view/9f916a24-8c3e-4d39-a8d7-dc54bc0a3373?_g=(refreshInterval:(pause:!f,value:900000),time:(from:now-7d%2Fd,to:now))&_a=(" +
     `${formattedQuery}` +
     ")&hide-filter-bar=true";
 

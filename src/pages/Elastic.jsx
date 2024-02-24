@@ -13,12 +13,12 @@ const Elastic = ({ onDataReceived }) => {
     const fetchData = async () => {
       const response = await axios({
         method: "post",
-        url: "https://13.125.155.23:9200/_msearch", // Elasticsearch 서버 URL을 적절히 수정해주세요.
+        url: "https://13.125.155.23:9200/_msearch",
         headers: {
           "Content-Type": "application/x-ndjson",
           Authorization: `ApiKey ${ElasticAPIKey}`,
         },
-        data: query,
+        data: query, //검색하고자 하는 지표
       });
 
       const regions = response.data.responses
