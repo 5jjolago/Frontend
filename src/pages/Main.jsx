@@ -29,7 +29,7 @@ const Main = () => {
               style={{ height: "80px" }}
             />
           </h1>
-          <p className="text-2xl font-bold ml-4">거주지 추천 서비스</p>
+          <p className="text-2xl font-bold ml-4">거주지 추천 서비스 윤경진</p>
         </div>
         <div className="top-area__right ml-48">
           <ul className="utill-btn flex flex-row">
