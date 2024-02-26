@@ -144,7 +144,7 @@ const Mypage = () => {
       </div>
     </div>
   ); 
-  // 1
+  // 12
 };
 
 export default Mypage;
