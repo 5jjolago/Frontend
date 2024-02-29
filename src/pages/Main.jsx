@@ -38,12 +38,11 @@ const Main = () => {
           </ul>
         </div>
       </div>
-      <Dashboard />
+      <div className="flex flex-row">
 
       <div
         className={`w-96 h-full transition-all duration-500 transform`}
         style={{
-          position: "absolute",
           top: "75px",
           zIndex: isLeftTapOpen ? 1001 : 99,
           left: isLeftTapOpen ? 0 : -395,
@@ -56,12 +55,14 @@ const Main = () => {
       >
         <LeftTap />
       </div>
-      <button
+      <Dashboard />
+      </div>
+      {/* <button
         onClick={handleButtonClick}
         className="absolute top-0 right-0 m-4 p-2 bg-blue-500 text-white z-10"
       >
         {isLeftTapOpen ? "Hide" : "Show"}
-      </button>
+      </button> */}
     </div>
   );
 };
