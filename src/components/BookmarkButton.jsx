@@ -38,7 +38,7 @@ function BookmarkButton() {
       gender: gender,
     };
 
-    console.log(userData);
+    console.log(userData,token);
     getUserAttributes();
     try {
       const response = await fetch(
