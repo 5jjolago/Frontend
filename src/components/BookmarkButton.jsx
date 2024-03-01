@@ -56,7 +56,7 @@ function BookmarkButton() {
       console.log(json.message);
       handleFavoriteButton();
     } catch (err) {
-      console.log("실패했다" + err);
+      console.log("실패했다1" + err);
     }
   };
 
