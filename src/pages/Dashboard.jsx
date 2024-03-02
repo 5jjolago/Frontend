@@ -7,7 +7,6 @@ function Dashboard() {
   const [seoulDistricts, setSeoulDistricts] = useState([]);
 
   const handleDataReceived = (data) => {
-    console.log("데이터 받았다");
     setSeoulDistricts(data);
   };
 
