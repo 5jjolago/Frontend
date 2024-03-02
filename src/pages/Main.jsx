@@ -25,7 +25,7 @@ const Main = () => {
         <div className="top-area__left flex items-center">
           <h1>
             <img
-              src="/images/ozzorago_main.PNG"
+              src="/images/ozzoragoLogo.PNG"
               alt="Ozzorago Main Image"
               style={{ height: "80px" }}
             />

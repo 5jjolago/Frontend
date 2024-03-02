@@ -24,7 +24,7 @@ const Mypage = () => {
     const handleGetRequest = async () => {
       try {
         const response = await fetch(
-          `http://fastapi-svc.default.svc.cluster.local:8080/bookmarks/`,
+          `https://fastapi-svc.default.svc.cluster.local:8080/bookmarks/`,
           {
             method: "GET",
             headers: {
@@ -56,7 +56,7 @@ const Mypage = () => {
   const handleDeleteItemAll = async () => {
     try {
       const response = await fetch(
-        `http://fastapi-svc:8080/bookmarks/`,
+        `https://fastapi-svc:8080/bookmarks/`,
         {
           method: "DELETE",
           headers: {
@@ -76,7 +76,7 @@ const Mypage = () => {
   const handleDeleteItem = async (neighborhood) => {
     try {
       const response = await fetch(
-        `http://fastapi-svc:8080/bookmarks/${neighborhood}`,
+        `https://fastapi-svc:8080/bookmarks/${neighborhood}`,
         {
           method: "DELETE",
           headers: {
