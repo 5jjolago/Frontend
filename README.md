@@ -1,1 +1,1 @@
-front fetch 요청 test
+front fetch 요청 test2
