@@ -52,13 +52,13 @@ const Main = () => {
           borderRadius: "0 0 14px 0",
           boxShadow: "4px 4px 12px 0px rgba(0, 0, 0, 0.12)",
         }}
-      >
+      > 
         <LeftTap />
       </div>
       <Dashboard />
       </div>
       {/* <button
-        onClick={handleButtonClick}
+        1onClick={handleButtonClick}
         className="absolute top-0 right-0 m-4 p-2 bg-blue-500 text-white z-10"
       >
         {isLeftTapOpen ? "Hide" : "Show"}
