@@ -24,7 +24,7 @@ const Mypage = () => {
     const handleGetRequest = async () => {
       try {
         const response = await fetch(
-          `//fastapi-svc.default.svc.cluster.local:8080/bookmarks/`,
+          `http://fastapi-svc:8080/bookmarks/`,
           {
             method: "GET",
             headers: {
