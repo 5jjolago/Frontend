@@ -21,7 +21,7 @@ const Elastic = ({ onDataReceived }) => {
     const fetchData = async () => {
       const response = await axios({
         method: "post",
-        url: "https://kibana.nalraon.kr/education-data-classify/_search", // Elasticsearch 서버 URL을 적절히 수정해주세요.
+        url: "https://kibana.nalraon.kr:9200/education-data-classify/_search", // Elasticsearch 서버 URL을 적절히 수정해주세요.
         headers: {
           "Content-Type": "application/x-ndjson",
           Authorization: `ApiKey ${ElasticAPIKey}`,
