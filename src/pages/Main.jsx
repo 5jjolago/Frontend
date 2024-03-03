@@ -39,30 +39,23 @@ const Main = () => {
         </div>
       </div>
       <div className="flex flex-row">
-
-      <div
-        className={`w-96 h-full transition-all duration-500 transform`}
-        style={{
-          top: "75px",
-          zIndex: isLeftTapOpen ? 1001 : 99,
-          left: isLeftTapOpen ? 0 : -395,
-          width: "394px",
-          height: "auto",
-          backgroundColor: "#fff",
-          borderRadius: "0 0 14px 0",
-          boxShadow: "4px 4px 12px 0px rgba(0, 0, 0, 0.12)",
-        }}
-      > 
-        <LeftTap />
+        <div
+          className={`w-96 h-full transition-all duration-500 transform`}
+          style={{
+            top: "75px",
+            zIndex: isLeftTapOpen ? 1001 : 99,
+            left: isLeftTapOpen ? 0 : -395,
+            width: "394px",
+            height: "auto",
+            backgroundColor: "#fff",
+            borderRadius: "0 0 14px 0",
+            boxShadow: "4px 4px 12px 0px rgba(0, 0, 0, 0.12)",
+          }}
+        >
+          <LeftTap />
+        </div>
+        <Dashboard />
       </div>
-      <Dashboard />
-      </div>
-      {/* <button
-        1onClick={handleButtonClick}
-        className="absolute top-0 right-0 m-4 p-2 bg-blue-500 text-white z-10"
-      >
-        {isLeftTapOpen ? "Hide" : "Show"}
-      </button> */}
     </div>
   );
 };
