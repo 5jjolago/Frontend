@@ -18,7 +18,7 @@ function LogoutButton() {
 
 
     return (
-        <div className="text-center mb-4 ml-4">
+        <div className="text-center">
           <div className="flex justify-center space-x-4">
             <button
               onClick={handleLogout}

@@ -18,7 +18,7 @@ function SignInUp() {
     return (
         <div>
             {!cognitoUser ? (
-                <div className="text-center mb-4">
+                <div className="text-center">
                     <div className="flex justify-center space-x-4">
                         <Link to="/login" className="border border-gray-500 text-gray-500 hover:bg-gray-500 hover:text-white py-1 px-2 rounded shadow">
                             <div className="flex items-center">
@@ -34,7 +34,7 @@ function SignInUp() {
                 </div>
             ) : (
                 <div className="flex justify-center space-x-4" >
-        <div className="text-center mb-4 ml-4">
+        <div className="text-center ">
           <div className="flex justify-center space-x-4">
                     <button className="border border-gray-500 text-gray-500 hover:bg-gray-500 hover:text-white py-1 px-2 rounded shadow">
                     <Link to="/mypage"> {cognitoUser.username}님 마이페이지</Link>
