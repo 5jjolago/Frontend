@@ -42,7 +42,7 @@ function BookmarkButton() {
     getUserAttributes();
     try {
       const response = await fetch(
-        `https://fastapi-svc:8080/bookmarks/?neighborhood=${neighborhood}&user_name=${name}&age=${age}&gender=${gender}`,
+        `https://fastapi.nalraon.kr/bookmarks/?neighborhood=${neighborhood}&user_name=${name}&age=${age}&gender=${gender}`,
         {
           method: "POST",
           headers: {
