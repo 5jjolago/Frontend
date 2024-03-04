@@ -45,7 +45,7 @@ function BookmarkButton() {
       console.log('이름'+ name, 'neighborhood' + neighborhood, 'age' + age, 'gender' + gender)
       const response = await fetch(
         // `https://fastapi.nalraon.kr/bookmarks/?neighborhood=${"neighborhood"}&age=${age}&gender=${gender}`,
-        `https://fastapi.nalraon.kr/bookmarks/?neighborhood="강남구"&age=${age}&gender=${gender}`,
+        `https://fastapi.nalraon.kr/bookmarks/?neighborhood=강남구&age=${age}&gender=${gender}`,
         {
           method: "POST",
           headers: {
