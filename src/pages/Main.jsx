@@ -30,7 +30,7 @@ const Main = () => {
               style={{ height: "60px" }}
             />
           </h1>
-          <p className="text-xl font-bold ml-4 mt-2">거주지 추천 서비스</p>
+          <p className="text-xl font-bold ml-4 mt-2">거주지 추천</p>
         </div>
         <div className="top-area__right flex flex-row items-center justify-center" style={{marginLeft:'2rem'}}>
           <ul className="utill-btn flex flex-row items-center justify-center">
