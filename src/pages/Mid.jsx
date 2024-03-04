@@ -718,7 +718,7 @@ const Mid = ({ onResetDropdown }) => {
           type="button"
           className="btn assay active bg-gradient-to-br from-blue-800 to-blue-500 rounded-md"
           onClick={handleAnalyzeClick}
-          style={{ width: "247px", height: "45px" }}
+          style={{ width: "247px", height: "45px", color: "white" }}
         >
           분석
         </button>
