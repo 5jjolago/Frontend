@@ -14,19 +14,19 @@ import Mypage from "./components/Mypage.jsx";
 
 const App = () => {
   const [cognitoInfo, setCognitoInfo] = useState(null);
-  const { logout } = useCognito();
+  // const { logout } = useCognito();
 
-  useEffect(() => {
-    const handleBeforeUnload = () => {
-      logout(); // Cognito 로그아웃 처리
-    };
+  // useEffect(() => {
+  //   const handleBeforeUnload = () => {
+  //     logout(); // Cognito 로그아웃 처리
+  //   };
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
+  //   window.addEventListener("beforeunload", handleBeforeUnload);
 
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, [logout]); // 의존성 배열에 logout 추가
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleBeforeUnload);
+  //   };
+  // }, [logout]); // 의존성 배열에 logout 추가
 
 
   useEffect(() => {
