@@ -76,7 +76,7 @@ const Mypage = () => {
   const handleDeleteItem = async (neighborhood) => {
     try {
       const response = await fetch(
-        `https://fastapi.nalraon.kr/bookmarks/${neighborhood}`,
+        `https://fastapi.nalraon.kr/bookmarks/${neighborhood}/`,
         {
           method: "DELETE",
           headers: {
