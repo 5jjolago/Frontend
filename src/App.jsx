@@ -26,7 +26,7 @@ const App = () => {
   //   return () => {
   //     window.removeEventListener("beforeunload", handleBeforeUnload);
   //   };
-  // }, [logout]); // 의존성 배열에 logout 추가
+  // }, [logout]); // 의존성 배열에 logout 추가ASDASD
 
 
   useEffect(() => {
