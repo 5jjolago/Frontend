@@ -13,6 +13,7 @@ function BookmarkButton() {
   const cognitoUser = CognitoUser;
   // SignUpState의 값에서 필요한 데이터 추출
   const { name, neighborhood, age, gender } = recoilSignUpValue;
+  console.log('이름'+ name, 'neighborhood' + neighborhood, 'age' + age, 'gender' + gender)
   const [clickFavorite, setClickFavorite] = useState(false);
   // 회원가입 시 즐겨찾기 생성 함수
   const { getUserAttributes } = useCognito();
@@ -41,8 +42,9 @@ function BookmarkButton() {
     console.log(userData,token);
     getUserAttributes();
     try {
+      console.log('이름'+ name, 'neighborhood' + neighborhood, 'age' + age, 'gender' + gender)
       const response = await fetch(
-        `https://fastapi-svc:8080/bookmarks/?neighborhood=${neighborhood}&user_name=${name}&age=${age}&gender=${gender}`,
+        `https://fastapi.nalraon.kr/bookmarks/?neighborhood=${neighborhood}&age=${age}&gender=${gender}`,
         {
           method: "POST",
           headers: {
@@ -86,3 +88,4 @@ function BookmarkButton() {
 }
 
 export default BookmarkButton;
+// jenkins test

@@ -11,7 +11,7 @@ const Top = ({ resetDropdown, onSelect }) => {
   ];
 
   const [isDropdownOpen1, setIsDropdownOpen1] = useState(false);
-  const [selectedArea1, setSelectedArea1] = useState('전국');
+  const [selectedArea1, setSelectedArea1] = useState('서울특별시');
   const [highlightedItem1, setHighlightedItem1] = useState(null);
 
   const [isDropdownOpen2, setIsDropdownOpen2] = useState(false);
@@ -21,7 +21,7 @@ const Top = ({ resetDropdown, onSelect }) => {
 
   useEffect(() => {
     if (resetDropdown) {
-      setSelectedArea1('전국');
+      setSelectedArea1('서울특별시');
       setSelectedArea2('전체');
       setIsDropdownOpen1(false);
       setIsDropdownOpen2(false);

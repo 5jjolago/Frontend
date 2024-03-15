@@ -5,7 +5,7 @@ import Main from "./pages/Main";
 import BookmarkPage from "./components/Mypage.jsx";
 import Login from "./pages/Login.jsx";
 import SignUp from "./pages/SignUp.jsx";
-import { CognitoProvider } from "./context/CognitoProvider.jsx";
+import { CognitoProvider, useCognito } from "./context/CognitoProvider.jsx";
 import { COGNITO_API } from "./config";
 import SignInUp from "./components/SignInUp.jsx";
 import { RecoilRoot } from "recoil";
@@ -14,6 +14,19 @@ import Mypage from "./components/Mypage.jsx";
 
 const App = () => {
   const [cognitoInfo, setCognitoInfo] = useState(null);
+  // const { logout } = useCognito();
+
+  // useEffect(() => {
+  //   const handleBeforeUnload = () => {
+  //     logout(); // Cognito 로그아웃 처리
+  //   };
+
+  //   window.addEventListener("beforeunload", handleBeforeUnload);
+
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleBeforeUnload);
+  //   };
+  // }, [logout]); // 의존성 배열에 logout 추가
 
 
   useEffect(() => {

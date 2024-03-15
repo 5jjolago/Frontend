@@ -690,7 +690,7 @@ const Mid = ({ onResetDropdown }) => {
           {renderLifestyleBoxes()}
         </ul>
       </fieldset>
-
+    {lifestyle && (
       <div>
         <div className="flex items-center mt-4">
           <div className="text-black font-bold text-sm pb-3">선택한 지표</div>
@@ -704,8 +704,8 @@ const Mid = ({ onResetDropdown }) => {
           </ul>
         </div>
       </div>
-
-      <div className="button-wrap flex w-full mt-3">
+)}
+      <div className="button-wrap flex w-full mt-6">
         <button
           type="button"
           className="btn redo p-3 btn mr-2 flex justify-center align-middle items-center relative border-2 border-gray-300 rounded-lg text-base leading-none bg-gray-200 text-gray-600 h-12 focus:outline-none"
@@ -718,7 +718,7 @@ const Mid = ({ onResetDropdown }) => {
           type="button"
           className="btn assay active bg-gradient-to-br from-blue-800 to-blue-500 rounded-md"
           onClick={handleAnalyzeClick}
-          style={{ width: "247px", height: "45px" }}
+          style={{ width: "247px", height: "45px", color: "white" }}
         >
           분석
         </button>
