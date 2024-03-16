@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { COGNITO_API } from "../config";
+import { COGNITO_API } from "../config.js";
 import { useRecoilValue } from "recoil";
 import { signUpState, useSignUpStateLogger } from "../recoil/RecoilState.js";
 import { useCognito } from "../context/CognitoProvider.jsx";
