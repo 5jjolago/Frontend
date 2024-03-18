@@ -30,7 +30,7 @@ const Main = () => {
               style={{ height: "40px" }}
             />
           </h1>
-          <p className="text-2xl font-bold ml-4">ㅋ</p>
+          <p className="text-2xl font-bold ml-4"></p>
         </div>
         <div className="top-area__right flex flex-row items-center justify-center mr-16" style={{marginLeft:'2rem'}}>
           <ul className="utill-btn flex flex-row items-center justify-center">
