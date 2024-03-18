@@ -35,9 +35,9 @@ function Dashboard() {
 
   return (
     <div style={{ width: "100%", height: "90vh" }}>
-      <p>
+      {/* <p>
         {selectedLifestyle} : {seoulDistricts}
-      </p>
+      </p> */}
       <iframe
         key={FormattedQuery} // key를 FormattedQuery로 설정
         title="elastic-dashboard"
