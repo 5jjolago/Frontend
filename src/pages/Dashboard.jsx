@@ -31,9 +31,8 @@ function Dashboard() {
     const formattedQuery = `query:(language:kuery,query:'${query}')`;
     setFormattedQuery(encodeURIComponent(formattedQuery)); // URL 인코딩 추가
   }, [seoulDistricts]); // 의존성 배열에 seoulDistricts 추가
-
   const source =
-    "https://kibana.nalraon.kr/app/dashboards?auth_provider_hint=anonymous1#/view/9f916a24-8c3e-4d39-a8d7-dc54bc0a3373?embed=true&_g=(refreshInterval%3A(pause%3A!t%2Cvalue%3A60000)%2Ctime%3A(from%3Anow-15m%2Cto%3Anow))&_a=(" +
+    "https://kibana.nalraon.kr/app/dashboards?auth_provider_hint=anonymous1#/view/9f916a24-8c3e-4d39-a8d7-dc54bc0a3373?embed=true&_a=(" +
     `${FormattedQuery}` +
     ")&hide-filter-bar=true";
 
