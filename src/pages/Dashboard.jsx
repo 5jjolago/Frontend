@@ -20,7 +20,11 @@ function Dashboard() {
   useEffect(() => {
     // 배열 요소를 쿼리 문자열에 추가
     const query = seoulDistricts
-      .map((district) => `sggnm.keyword:"${district}"`)
+      .map((districtObj) => {
+        // 객체의 키(지역 이름)를 추출합니다.
+        const districtName = Object.keys(districtObj)[0];
+        return `sggnm.keyword:"${districtName}"`;
+      })
       .join(" OR ");
 
     // 쿼리 문자열을 Kibana가 이해할 수 있는 형식으로 포맷

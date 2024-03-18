@@ -617,16 +617,21 @@ const lifestyleSubMetrics = {
   ],
 };
 
-const Mid = ({ onResetDropdown }) => {
+const Mid = ({ onResetDropdown, changeLoading }) => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const dispatch = useDispatch();
   const [lifestyle, setLifestyle] = useState(null);
   const selectedLifestyle = useSelector(
     (state) => state.lifestyle.selectedLifestyle
   );
 
+  const districts = useSelector((state) => state.districts.seoulDistricts);
+
   const handleResetDropdownAndLifestyle = () => {
     setLifestyle(null);
     onResetDropdown();
+    setIsLoading(false);
   };
 
   const handleLifestyleClick = (lifestyle) => {
@@ -637,6 +642,9 @@ const Mid = ({ onResetDropdown }) => {
   const handleAnalyzeClick = () => {
     if (lifestyle) {
       dispatch(setSelectedLifestyle(lifestyle));
+
+      setIsLoading(true); // 로딩 상태를 true로 설정하여 로딩 시작
+      console.log("로딩상태임");
     } else {
       alert("라이프스타일을 선택해주세요.");
     }
@@ -676,35 +684,73 @@ const Mid = ({ onResetDropdown }) => {
 
   return (
     <>
-      <div className="flex pt-5 align-middle">
-        <div className="flex text-black font-bold text-sm">
-          라이프스타일 선택
-        </div>
-        <span className="flex ml-2">
-          <Tooltip className="h-full" />
-        </span>
-      </div>
+      {isLoading ? (
+        <>
+          <div className="py-5">
+            <div className="flex text-black font-bold text-sm">
+              결과 지역구 : {districts.length} 개
+            </div>
+          </div>
+          <div className="index-select">
+            <ul className="h-80 overflow-scroll index-select__selected pb-3 flex flex-row flex-wrap border border-solid border-gray-300 rounded-lg p-0 pb-15 pt-3">
+              {districts.map((districtObj, index) => {
+                const districtName = Object.keys(districtObj)[0]; // 객체에서 지역 이름(키) 추출
+                const score = districtObj[districtName]; // 지역 이름을 사용해 점수(값) 추출
 
-      <fieldset>
-        <ul className="lifestyle w-88 h-48 grid grid-cols-4 gap-0 tracking-tighter mt-2 box-border">
-          {renderLifestyleBoxes()}
-        </ul>
-      </fieldset>
-    {lifestyle && (
-      <div>
-        <div className="flex items-center mt-4">
-          <div className="text-black font-bold text-sm pb-3">선택한 지표</div>
+                return (
+                  <div
+                    key={index}
+                    className="flex items-center mx-3 my-1 w-full bg-stone-100 px-3 py-1 leading-6 tracking-tighter rounded-lg"
+                  >
+                    <div className="flex bg-sky-500 font-bold text-white items-center justify-center w-7 h-7 rounded-full overflow-hidden">
+                      {index + 1}
+                    </div>
+                    <li className="p-2 text-s flex items-center">
+                      서울특별시 {districtName}
+                      <p className="p-2 text-xs text-gray-500">
+                        점수 : {score.toFixed(2)}
+                      </p>
+                    </li>
+                  </div>
+                );
+              })}
+            </ul>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="flex pt-5 align-middle">
+            <div className="flex text-black font-bold text-sm">
+              라이프스타일 선택
+            </div>
+            <span className="flex ml-2">
+              <Tooltip className="h-full" />
+            </span>
+          </div>
+
+          <fieldset>
+            <ul className="lifestyle w-88 h-48 grid grid-cols-4 gap-0 tracking-tighter mt-2 box-border">
+              {renderLifestyleBoxes()}
+            </ul>
+          </fieldset>
+        </>
+      )}
+
+      {lifestyle && (
+        <div>
+          <div className="flex items-center mt-4">
+            <div className="text-black font-bold text-sm pb-3">선택한 지표</div>
+          </div>
+          <div className="index-select">
+            <ul className="index-select__selected pb-3 flex flex-row flex-wrap border border-solid border-gray-300 rounded-lg p-0 pb-15">
+              {renderSelectedMetrics()}
+            </ul>
+            <ul className="index-select__edit flex flex-row flex-wrap items-center mt-4 ml-0 -ml-6">
+              {renderSelectedSubMetrics()}
+            </ul>
+          </div>
         </div>
-        <div className="index-select">
-          <ul className="index-select__selected pb-3 flex flex-row flex-wrap border border-solid border-gray-300 rounded-lg p-0 pb-15">
-            {renderSelectedMetrics()}
-          </ul>
-          <ul className="index-select__edit flex flex-row flex-wrap items-center mt-4 ml-0 -ml-6">
-            {renderSelectedSubMetrics()}
-          </ul>
-        </div>
-      </div>
-)}
+      )}
       <div className="button-wrap flex w-full mt-6">
         <button
           type="button"

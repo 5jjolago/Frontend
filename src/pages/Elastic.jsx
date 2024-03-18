@@ -117,9 +117,9 @@ const Elastic = ({ selectedLifestyle }) => {
           }
         );
 
-        const regions = response.data.hits.hits.map(
-          (item) => item._source.지역
-        );
+        const regions = response.data.hits.hits.map((item) => ({
+          [item._source.지역]: item._score,
+        }));
         dispatch(setDistricts(regions));
       } catch (error) {
         console.error("Error fetching data", error);

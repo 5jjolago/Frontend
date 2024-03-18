@@ -11,6 +11,7 @@ const Main = () => {
   const [isLeftTapOpen, setIsLeftTapOpen] = useState(true);
   const navigation = useNavigate();
   const { getSession } = useCognito();
+
   const handleButtonClick = () => {
     setIsLeftTapOpen(!isLeftTapOpen);
   };
