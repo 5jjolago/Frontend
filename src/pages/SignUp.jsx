@@ -5,6 +5,7 @@ import { signUpState, useSignUpStateLogger } from '../recoil/RecoilState.js';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 function SignUp() {
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
