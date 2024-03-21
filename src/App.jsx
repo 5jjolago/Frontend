@@ -45,7 +45,7 @@ const App = () => {
       const cognitoData = await getCognitoInfo();
       setCognitoInfo(cognitoData);
     };
-
+// 1`
     const checkLocalStorage = async () => {
       if (!localStorage.getItem(`CognitoIdentityServiceProvider.${COGNITO_API.clientId}.LastAuthUser`)) {
         console.log("로컬 스토리지에 값이 없습니다.");
